@@ -18,7 +18,7 @@ const NavBarDesktop = () => {
             setIsScrolled(false)
         }  
     })
-    }, [navOffset])
+    }, [])
     
     
 
