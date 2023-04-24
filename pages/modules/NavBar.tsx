@@ -3,6 +3,7 @@ import Profile from './Profile';
 
 import React, { useState, useEffect } from 'react';
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline'
+import Link from 'next/link';
 
 const NavBarDesktop = () => { 
     const [isScrolled, setIsScrolled] = useState<boolean>(false);
@@ -19,15 +20,13 @@ const NavBarDesktop = () => {
         }  
     })
     })
-    
-    
 
     return (
         <div id="navbar" className={`fixed z-50 w-full duration-500 ${isScrolled ? "bg-zinc-950 shadow-lg shadow-orange-500/30" : null}`}>
             <header className="w-[calc(100%-2rem)] h-16 rounded-full mx-4 flex items-center relative justify-between">
-                <div className="p-2 px-3 font-sans rounded-full left-3">
-                    <h1 className="px-4 text-3xl rounded-full bg-slate-100">Hello Traveler!</h1>
-                </div>
+                <Link href="/">
+                    <h1 className="text-3xl ml-4 rounded-full text-zinc-50" >Sagittarius Treasure</h1>               
+                </Link>
                 <div className={`flex items-center duration-100 justify-center h-10 px-2 -ml-24 bg-white ${!isScrolled ? "border-2" : null}  rounded-full border-neutral-300 w-1/6`}>
                     <MagnifyingGlassIcon className='w-8 h-8 text-zinc-900'/>
                     <input type='text' className='w-full h-full mx-2 focus:outline-none'></input>
@@ -47,4 +46,4 @@ const NavBarDesktop = () => {
     )
 }
 
-export default NavBarDesktop;
+export {NavBarDesktop};

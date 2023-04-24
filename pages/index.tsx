@@ -1,29 +1,24 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
-import React, {Fragment, useState, useEffect, Component  } from 'react'
-import ProductContainer from "./modules/ProductContainer"
 
-import NavBarDesktop from './modules/NavBarDesktop'
-import Carousel from "./modules/Carousel"
+import {NavBarDesktop} from './modules/NavBar'
+import Landing from './Landing'
+
+import { useRouter } from 'next/router'
+import MainContainer from "./MainContainer"
 
 const inter = Inter({ subsets: ['latin'] })
 
 
 export default function Home() {
-  let [data, setData] = useState<any[]>([])
-  let [bannerList, setBannerList] = useState<any[]>([])
-  let [size, setSize] = useState<number>()
-  
-
-  useEffect(() => {
-    fetch('/api/product_handler/').then((res) => res.json()).then((data) => setData(data));
-    fetch('/api/banner_handler/').then((res) => res.json()).then((data) => {setBannerList(data)});
-    setSize(window.innerWidth) 
-}, [])
 
   
+  const router = useRouter()
+  console.log(router.pathname)
+  const path  = router.pathname;
+
+
   return (
     <>
       <Head>
@@ -33,14 +28,11 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main} >
-        <div  className='bg-zinc-900 -m-t-4'>
-          <NavBarDesktop/>
-          <div className='h-24'></div>  
-          <Carousel bannerList={bannerList}/> 
-          <div>
-        <ProductContainer data={data}/>
-      </div>
-        </div>
+          <NavBarDesktop />
+          <MainContainer>
+            
+            <Landing/>
+          </MainContainer>
       </main>
 
 
